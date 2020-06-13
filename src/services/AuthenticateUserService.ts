@@ -2,6 +2,8 @@ import { getRepository } from 'typeorm';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 
+import AppError from '../errors/AppError';
+
 import authConfig from '../config/auth';
 import User from '../models/User';
 
@@ -24,13 +26,13 @@ class AuthenticateUserService {
     });
 
     if (!user) {
-      throw new Error('Incorrect e-mail/password combination.');
+      throw new AppError('Incorrect e-mail/password combination.', 401);
     }
 
     const passwordMatch = await compare(password, user.password);
 
     if (passwordMatch) {
-      throw new Error('Incorrect e-mail/password combination.');
+      throw new AppError('Incorrect e-mail/password combination.', 401);
     }
 
     const { secret, expiresIn } = authConfig.jwt;
