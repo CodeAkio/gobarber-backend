@@ -1,5 +1,3 @@
-// import AppError from '@shared/errors/AppError';
-
 import FakeUsersRepository from '@modules/users/repositories/fakes/FakeUsersRepository';
 import ListProvidersService from '@modules/appointments/services/ListProvidersService';
 
@@ -38,10 +36,4 @@ describe('ListProviders', () => {
 
     expect(providers).toEqual([user1, user2]);
   });
-
-  // it('should not be able to show profile from non-existing user', async () => {
-  //   await expect(
-  //     showProfileService.execute({ user_id: 'non-existing-user-id' }),
-  //   ).rejects.toBeInstanceOf(AppError);
-  // });
 });
